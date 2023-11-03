@@ -25,8 +25,8 @@ class Terminal:
     def total_time(self):
         return self.__total_time
     def call(self, terminal, call_time):
-        self.time_made += call_time
-        terminal.time_received += call_time
+        self.time_made = call_time
+        terminal.time_received = call_time
 
     def __str__(self):
         return f'{self.__digits} - Conversation time: {self.__total_time}'
