@@ -27,9 +27,29 @@ class Terminal:
     def call(self, terminal, call_time):
         self.time_made = call_time
         terminal.time_received = call_time
-
     def __str__(self):
-        return f'{self.__digits} - Conversation time: {self.__total_time}'
+        return f'{self.__digits} - Conversation time: {self.__total_time}s'
+
+class Mobile(Terminal):
+    def __init__(self, digits, rate):
+        super().__init__(digits)
+        if rate=="rat":
+            self.__rate = 0.05/60
+        elif rate=="monkey":
+            self.__rate = 0.15/60
+        elif rate=="elephant":
+            self.__rate = 0.3/60
+        else:
+            raise TypeError (f'{rate} is not a valid rate')
+        self.__charged = 0
+    @property
+    def charged(self):
+        return self.__charged 
+    def call(self, terminal, call_time):
+        super().call(terminal, call_time)
+        self.__charged = round(self._Terminal__time_made * self.__rate, 2)
+    def __str__(self):
+        return f'{self._Terminal__digits} - {self._Terminal__total_time}s of Conversation - charged {self.__charged}€'
 
 
 
