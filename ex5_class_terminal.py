@@ -1,15 +1,18 @@
 class Terminal:
     def __init__(self, digits):
-        if digits[0] in ["9", "7", "6"] and len(digits) == 9:
-            self.__digits = digits
-        else:
-            raise TypeError(f'{digits} no es un número de teléfono válido.')
+        self.digits = digits
         self.__time_made = 0
         self.__time_received = 0
         self.__total_time = 0
     @property
     def digits(self):
         return self.__digits
+    @digits.setter
+    def digits(self, digits):
+        if digits[0] in ["9", "7", "6"] and len(digits) == 9:
+            self.__digits = digits
+        else:
+            raise TypeError(f'{digits} no es un número de teléfono válido.')
     @property
     def time_received(self):
         return self.__time_received
