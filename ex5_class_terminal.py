@@ -8,6 +8,9 @@ class Terminal:
         self.__time_received = 0
         self.__total_time = 0
     @property
+    def digits(self):
+        return self.__digits
+    @property
     def time_received(self):
         return self.__time_received
     @time_received.setter
@@ -47,9 +50,9 @@ class Mobile(Terminal):
         return self.__charged 
     def call(self, terminal, call_time):
         super().call(terminal, call_time)
-        self.__charged = round(self._Terminal__time_made * self.__rate, 2)
+        self.__charged = round(super().time_made* self.__rate, 2)
     def __str__(self):
-        return f'{self._Terminal__digits} - {self._Terminal__total_time}s of Conversation - charged {self.__charged}€'
+        return f'{super().digits} - {super().total_time}s of Conversation - charged {self.__charged}€'
 
 
 
