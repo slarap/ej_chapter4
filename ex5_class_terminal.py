@@ -9,7 +9,7 @@ class Terminal:
         return self.__digits
     @digits.setter
     def digits(self, digits):
-        if digits[0] in ["9", "7", "6"] and len(digits) == 9:
+        if int(digits[0]) in [9, 7, 6] and len(digits) == 9 and digits.isdigit():
             self.__digits = digits
         else:
             raise TypeError(f'{digits} no es un número de teléfono válido.')
@@ -39,6 +39,13 @@ class Terminal:
 class Mobile(Terminal):
     def __init__(self, digits, rate):
         super().__init__(digits)
+        self.rate = rate
+        self.__charged = 0
+    @property
+    def rate(self):
+        return self.__rate
+    @rate.setter
+    def rate(self, rate):
         if rate=="rat":
             self.__rate = 0.05/60
         elif rate=="monkey":
@@ -47,13 +54,18 @@ class Mobile(Terminal):
             self.__rate = 0.3/60
         else:
             raise TypeError (f'{rate} is not a valid rate')
-        self.__charged = 0
     @property
     def charged(self):
         return self.__charged 
+    @charged.setter
+    def charged(self, call_time):
+        self.__charged = round(super().time_made* self.__rate, 2)
     def call(self, terminal, call_time):
         super().call(terminal, call_time)
-        self.__charged = round(super().time_made* self.__rate, 2)
+        self.charged = call_time
+    def change_rate(self, new_rate):
+        self.rate = new_rate
+        
     def __str__(self):
         return f'{super().digits} - {super().total_time}s of Conversation - charged {self.__charged}€'
 
