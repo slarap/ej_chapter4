@@ -1,6 +1,6 @@
 from ex5_class_terminal import Terminal, Mobile
 t1 = Terminal("666112233")
-t2 = Terminal("666744459")
+t2 = Terminal("666744459") 
 t3 = Terminal("632128919")
 t4 = Terminal("664135818")
 print(t1)
@@ -23,4 +23,6 @@ m2.call(m3, 450)
 print(m1)
 print(m2)
 print(m3)
+
+
 

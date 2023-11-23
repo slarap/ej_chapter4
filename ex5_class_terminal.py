@@ -1,8 +1,8 @@
 class Terminal:
     def __init__(self, digits):
         self.digits = digits
-        self.__time_made = 0
-        self.__time_received = 0
+        self.time_made = 0
+        self.time_received = 0
         self.__total_time = 0
     @property
     def digits(self):
@@ -18,15 +18,22 @@ class Terminal:
         return self.__time_received
     @time_received.setter
     def time_received(self, call_time):
-        self.__time_received += call_time
-        self.__total_time += call_time
+        if call_time == 0:
+            self.__time_received = 0
+        else:
+            self.__time_received += call_time
+            self.__total_time += call_time
+    
     @property
     def time_made(self):
         return self.__time_made
     @time_made.setter
     def time_made(self, call_time):
-        self.__time_made += call_time
-        self.__total_time += call_time
+        if call_time == 0:
+            self.__time_made = 0
+        else:
+            self.__time_made += call_time
+            self.__total_time += call_time
     @property
     def total_time(self):
         return self.__total_time
